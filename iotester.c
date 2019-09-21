@@ -1,6 +1,6 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
-#include <SDL/SDL_ttf.h>
+/* #include <SDL/SDL_ttf.h> */
 #include "font.h"
 #include <fcntl.h>
 #include <unistd.h>
@@ -69,7 +69,7 @@ const int	HAlignLeft		= 1,
 			VAlignMiddle	= 32;
 
 SDL_RWops *rw;
-TTF_Font *font = NULL;
+/* TTF_Font *font = NULL; */
 SDL_Surface *screen = NULL;
 SDL_Surface* img = NULL;
 SDL_Rect bgrect;
@@ -95,30 +95,31 @@ uint8_t *keys;
 extern uint8_t rwfont[];
 
 int draw_text(int x, int y, const char buf[64], SDL_Color txtColor, int align) {
-	DBG("");
+	/* DBG(""); */
 
-	SDL_Surface *msg = TTF_RenderText_Blended(font, buf, txtColor);
+	/* SDL_Surface *msg = TTF_RenderText_Blended(font, buf, txtColor); */
 
-	if (align & HAlignCenter) {
-		x -= msg->w / 2;
-	} else if (align & HAlignRight) {
-		x -= msg->w;
-	}
+	/* if (align & HAlignCenter) { */
+	/* 	x -= msg->w / 2; */
+	/* } else if (align & HAlignRight) { */
+	/* 	x -= msg->w; */
+	/* } */
 
-	if (align & VAlignMiddle) {
-		y -= msg->h / 2;
-	} else if (align & VAlignTop) {
-		y -= msg->h;
-	}
+	/* if (align & VAlignMiddle) { */
+	/* 	y -= msg->h / 2; */
+	/* } else if (align & VAlignTop) { */
+	/* 	y -= msg->h; */
+	/* } */
 
-	SDL_Rect rect;
-	rect.x = x;
-	rect.y = y;
-	rect.w = msg->w;
-	rect.h = msg->h;
-	SDL_BlitSurface(msg, NULL, screen, &rect);
-	SDL_FreeSurface(msg);
-	return msg->w;
+	/* SDL_Rect rect; */
+	/* rect.x = x; */
+	/* rect.y = y; */
+	/* rect.w = msg->w; */
+	/* rect.h = msg->h; */
+	/* SDL_BlitSurface(msg, NULL, screen, &rect); */
+	/* SDL_FreeSurface(msg); */
+	/* return msg->w; */
+    return 0;
 }
 
 void draw_background(const char buf[64]) {
@@ -149,10 +150,10 @@ void draw_point(uint32_t x, uint32_t y, uint32_t w, uint32_t h) {
 void quit(int err) {
 	DBG("");
 	system("sync");
-	if (font) TTF_CloseFont(font);
-	font = NULL;
+	/* if (font) TTF_CloseFont(font); */
+	/* font = NULL; */
 	SDL_Quit();
-	TTF_Quit();
+	/* TTF_Quit(); */
 	exit(err);
 }
 
@@ -236,14 +237,14 @@ int main(int argc, char* argv[]) {
 
 	SDL_EnableKeyRepeat(1, 1);
 
-	if (TTF_Init() == -1) {
-		printf("failed to TTF_Init\n");
-		return -1;
-	}
+	/* if (TTF_Init() == -1) { */
+	/* 	printf("failed to TTF_Init\n"); */
+	/* 	return -1; */
+	/* } */
 	rw = SDL_RWFromMem(rwfont, sizeof(rwfont));
-	font = TTF_OpenFontRW(rw, 1, 8);
-	TTF_SetFontHinting(font, TTF_HINTING_NORMAL);
-	TTF_SetFontOutline(font, 0);
+	/* font = TTF_OpenFontRW(rw, 1, 8); */
+	/* TTF_SetFontHinting(font, TTF_HINTING_NORMAL); */
+	/* TTF_SetFontOutline(font, 0); */
 
 	SDL_Surface* _img = IMG_Load("backdrop.png");
 	img = SDL_DisplayFormat(_img);
